@@ -277,6 +277,34 @@
     line-height: 1.85;
     letter-spacing: 0.03em;
   }
+  .info-box {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    padding: 1rem 1.25rem;
+    font-size: 10px;
+    color: var(--mid);
+    line-height: 1.85;
+    letter-spacing: 0.03em;
+  }
+  .info-box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .info-box li {
+    position: relative;
+    padding-left: 1.1em;
+  }
+  .info-box li:not(:last-child) {
+    margin-bottom: 6px;
+  }
+  .info-box li::before {
+    content: '\2022';
+    position: absolute;
+    left: 0;
+    color: var(--black);
+  }
+
   .privacy-box h4 {
     font-size: 9px;
     font-weight: 600;
@@ -500,8 +528,12 @@
   <div class="main">
     <div id="form-area">
       <p class="section-label" id="lbl-warranty-info">Warranty Information</p>
-      <div class="privacy-box" id="warranty-info-box" style="margin-bottom:2.5rem;">
-        <span id="warranty-info-body">MYKITA frames purchased at MYKITA OSAKA are covered by a 2-year manufacturer's warranty from the date of purchase. This warranty covers manufacturing defects in materials and workmanship, as well as damage caused by normal wear and tear. Damage caused by accidents or misuse is not covered.</span>
+      <div class="info-box" id="warranty-info-box" style="margin-bottom:2.5rem;">
+        <ul id="warranty-info-list">
+          <li>MYKITA frames purchased at MYKITA OSAKA are covered by a 2-year manufacturer's warranty from the date of purchase.</li>
+          <li>Covered: manufacturing defects in materials and workmanship, and damage caused by normal wear and tear.</li>
+          <li>Not covered: damage caused by accidents or misuse.</li>
+        </ul>
       </div>
 
       <p class="section-label" id="lbl-info">Customer Information</p>
@@ -671,7 +703,11 @@ const i18n = {
     lblCountry: 'Country',
     lblEmail: 'Email Address',
     lblWarrantyInfo: 'Warranty Information',
-    warrantyInfoBody: "MYKITA frames purchased at MYKITA OSAKA are covered by a 2-year manufacturer's warranty from the date of purchase. This warranty covers manufacturing defects in materials and workmanship, as well as damage caused by normal wear and tear. Damage caused by accidents or misuse is not covered.",
+    warrantyInfoBullets: [
+      "MYKITA frames purchased at MYKITA OSAKA are covered by a 2-year manufacturer's warranty from the date of purchase.",
+      "Covered: manufacturing defects in materials and workmanship, and damage caused by normal wear and tear.",
+      "Not covered: damage caused by accidents or misuse."
+    ],
     lblPref: 'Preferences & Agreement',
     lblOptinTitle: 'Email Communications',
     lblOptinQ: 'Would you like to receive product updates, exclusive offers, and news from MYKITA OSAKA via email?',
@@ -700,7 +736,11 @@ const i18n = {
     lblCountry: '国・地域',
     lblEmail: 'メールアドレス',
     lblWarrantyInfo: '保証について',
-    warrantyInfoBody: 'MYKITA OSAKAでご購入いただいたMYKITAフレームには、ご購入日から2年間のメーカー保証が適用されます。本保証は材料および製造上の不具合と通常の経年劣化による損傷を対象としており、事故・誤使用による損傷は対象外となります。',
+    warrantyInfoBullets: [
+      'MYKITA OSAKAでご購入いただいたMYKITAフレームには、ご購入日から2年間のメーカー保証が適用されます。',
+      '保証対象：材料および製造上の不具合、通常の経年劣化による損傷',
+      '保証対象外：事故・誤使用による損傷'
+    ],
     lblPref: 'コミュニケーション設定・同意事項',
     lblOptinTitle: 'メール配信について',
     lblOptinQ: 'MYKITA OSAKAからのショップ情報や特別オファーをメールで受け取りますか？',
@@ -729,7 +769,11 @@ const i18n = {
     lblCountry: '国家 / 地区',
     lblEmail: '电子邮件',
     lblWarrantyInfo: '保修须知',
-    warrantyInfoBody: '在MYKITA OSAKA购买的MYKITA镜架自购买之日起享有2年制造商保修，保修范围涵盖材料及工艺方面的制造缺陷以及因正常磨损造成的损坏。因意外或误用造成的损坏不在保修范围内。',
+    warrantyInfoBullets: [
+      '在MYKITA OSAKA购买的MYKITA镜架自购买之日起享有2年制造商保修。',
+      '保修范围：材料及工艺方面的制造缺陷，以及因正常磨损造成的损坏',
+      '不在保修范围内：因意外或误用造成的损坏'
+    ],
     lblPref: '邮件设定与同意事项',
     lblOptinTitle: '邮件订阅',
     lblOptinQ: '您是否愿意通过电子邮件接收MYKITA OSAKA的新品资讯、独家优惠及活动信息？',
@@ -758,7 +802,11 @@ const i18n = {
     lblCountry: '국가 / 지역',
     lblEmail: '이메일 주소',
     lblWarrantyInfo: '보증 안내',
-    warrantyInfoBody: 'MYKITA OSAKA에서 구매하신 MYKITA 프레임은 구매일로부터 2년간 제조사 보증이 적용되며, 소재 및 제조상의 결함과 일반적인 마모로 인한 손상을 보장합니다. 사고 또는 오용으로 인한 손상은 보증 대상에서 제외됩니다.',
+    warrantyInfoBullets: [
+      'MYKITA OSAKA에서 구매하신 MYKITA 프레임은 구매일로부터 2년간 제조사 보증이 적용됩니다.',
+      '보증 대상: 소재 및 제조상의 결함, 일반적인 마모로 인한 손상',
+      '보증 제외 대상: 사고 또는 오용으로 인한 손상'
+    ],
     lblPref: '수신 설정 및 동의 사항',
     lblOptinTitle: '이메일 수신 동의',
     lblOptinQ: 'MYKITA OSAKA의 매장 정보 및 특별 혜택을 이메일로 받으시겠습니까?',
@@ -793,7 +841,7 @@ function setLang(lang) {
   document.getElementById('hdr-sub').textContent = t.hdrSub;
   document.getElementById('hdr-title').textContent = t.mainTitle;
   document.getElementById('lbl-warranty-info').textContent = t.lblWarrantyInfo;
-  document.getElementById('warranty-info-body').textContent = t.warrantyInfoBody;
+  document.getElementById('warranty-info-list').innerHTML = t.warrantyInfoBullets.map(b => '<li>' + escapeHtml(b) + '</li>').join('');
   document.getElementById('lbl-info').textContent = t.lblInfo;
   setLabelWithReq('lbl-name', t.lblName);
   setLabelWithReq('lbl-country', t.lblCountry);
