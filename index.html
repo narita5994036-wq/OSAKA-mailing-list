@@ -1032,7 +1032,11 @@ function resetForm() {
     document.getElementById('f-name').value = '';
     document.getElementById('f-country-input').value = '';
     document.getElementById('f-country').value = '';
-    document.getElementById('f-email').value = '';
+    const oldEmail = document.getElementById('f-email');
+    const newEmail = oldEmail.cloneNode(true);
+    newEmail.value = '';
+    oldEmail.parentNode.replaceChild(newEmail, oldEmail);
+    newEmail.addEventListener('input', updateSubmitState);
     document.getElementById('f-optin-yes').checked = false;
     document.getElementById('f-optin-no').checked = false;
     document.getElementById('f-agree').checked = false;
