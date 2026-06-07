@@ -478,6 +478,11 @@
 
   <div class="main">
     <div id="form-area">
+      <p class="section-label" id="lbl-warranty-info">Warranty Information</p>
+      <div class="privacy-box" id="warranty-info-box" style="margin-bottom:2.5rem;">
+        <span id="warranty-info-body">MYKITA frames purchased at MYKITA OSAKA are covered by a 2-year manufacturer's warranty from the date of purchase, covering manufacturing defects in materials and workmanship. The warranty does not cover damage caused by accidents, misuse, or normal wear and tear. Please retain your proof of purchase, as it may be required for warranty service.</span>
+      </div>
+
       <p class="section-label" id="lbl-info">Customer Information</p>
 
       <div class="field">
@@ -503,19 +508,19 @@
         <div class="err-msg" id="e-email">Please enter a valid email address.</div>
       </div>
 
-      <div class="field">
-        <label id="lbl-email2">Confirm Email Address <span class="req">*</span></label>
-        <input type="email" id="f-email2" placeholder="your@email.com">
-        <div class="err-msg" id="e-email2">Email addresses do not match.</div>
-      </div>
-
       <p class="section-label" style="margin-top:2.5rem;" id="lbl-pref">Preferences &amp; Agreement</p>
 
-      <div class="check-row">
-        <input type="checkbox" id="f-optin">
-        <label class="check-text" for="f-optin" id="lbl-optin">
-          I would like to receive product updates, exclusive offers, and news from MYKITA OSAKA via email.
-        </label>
+      <div class="field">
+        <label id="lbl-optin-q">Would you like to receive product updates, exclusive offers, and news from MYKITA OSAKA via email? <span class="req">*</span></label>
+        <div class="check-row" style="gap:28px; margin-bottom:0;">
+          <label class="check-text" style="display:flex; align-items:center; gap:8px;">
+            <input type="radio" name="f-optin" id="f-optin-yes" value="yes"> <span id="lbl-optin-yes">Yes</span>
+          </label>
+          <label class="check-text" style="display:flex; align-items:center; gap:8px;">
+            <input type="radio" name="f-optin" id="f-optin-no" value="no"> <span id="lbl-optin-no">No</span>
+          </label>
+        </div>
+        <div class="err-msg" id="e-optin">Please select Yes or No.</div>
       </div>
 
       <div class="privacy-box" id="privacy-box">
@@ -642,9 +647,13 @@ const i18n = {
     lblName: 'Name',
     lblCountry: 'Country',
     lblEmail: 'Email Address',
-    lblEmail2: 'Confirm Email Address',
+    lblWarrantyInfo: 'Warranty Information',
+    warrantyInfoBody: "MYKITA frames purchased at MYKITA OSAKA are covered by a 2-year manufacturer's warranty from the date of purchase, covering manufacturing defects in materials and workmanship. The warranty does not cover damage caused by accidents, misuse, or normal wear and tear. Please retain your proof of purchase, as it may be required for warranty service.",
     lblPref: 'Preferences & Agreement',
-    lblOptin: 'I would like to receive product updates, exclusive offers, and news from MYKITA OSAKA via email.',
+    lblOptinQ: 'Would you like to receive product updates, exclusive offers, and news from MYKITA OSAKA via email?',
+    optinYes: 'Yes',
+    optinNo: 'No',
+    eOptin: 'Please select Yes or No.',
     privTitle: 'Privacy Policy',
     privBody: 'Your personal data (name, country, email address) is collected by MYKITA OSAKA for the purpose of frame warranty registration and, if consented, for sending promotional communications. Your data will be stored securely and will not be shared with third parties except as required to fulfill the warranty service. You may request deletion or correction of your data at any time by contacting us in-store. By submitting this form, you acknowledge that you have read and understood this policy.',
     lblAgree: 'I have read and agree to the Privacy Policy.',
@@ -653,7 +662,6 @@ const i18n = {
     eName: 'Please enter your name.',
     eCountry: 'Please select your country.',
     eEmail: 'Please enter a valid email address.',
-    eEmail2: 'Email addresses do not match.',
     eAgree: 'You must agree to the Privacy Policy.',
     thanksTitle: 'Registration Complete',
     thanksBody: 'Thank you for registering your MYKITA frame.\nYour warranty has been recorded successfully.\n\nPlease visit us in-store if you have any questions.',
@@ -666,9 +674,13 @@ const i18n = {
     lblName: 'お名前',
     lblCountry: '国・地域',
     lblEmail: 'メールアドレス',
-    lblEmail2: 'メールアドレス（確認）',
+    lblWarrantyInfo: '保証について',
+    warrantyInfoBody: 'MYKITA OSAKAでご購入いただいたMYKITAフレームには、ご購入日から2年間のメーカー保証が適用されます。本保証は材料および製造上の不具合を対象としており、事故・誤使用・通常の経年劣化による損傷は対象外となります。保証サービスをご利用の際は購入証明（レシート等）が必要となる場合がございますので、大切に保管してください。',
     lblPref: 'コミュニケーション設定・同意事項',
-    lblOptin: 'MYKITA OSAKAからのショップ情報や特別オファーをメールで受け取ることに同意します。',
+    lblOptinQ: 'MYKITA OSAKAからのショップ情報や特別オファーをメールで受け取りますか？',
+    optinYes: 'はい',
+    optinNo: 'いいえ',
+    eOptin: '「はい」または「いいえ」を選択してください。',
     privTitle: 'プライバシーポリシー',
     privBody: 'お客様の個人情報（お名前、国名、メールアドレス）は、フレーム保証登録およびメールマガジン配信（同意いただいた場合）の目的にのみMYKITA OSAKAが取得します。取得した情報は安全に管理され、サービス提供に必要な範囲を除き第三者に提供することはございません。情報の削除・訂正は店頭にていつでもお申し出いただけます。',
     lblAgree: 'プライバシーポリシーを読み、内容に同意します。',
@@ -677,7 +689,6 @@ const i18n = {
     eName: 'お名前を入力してください。',
     eCountry: '国・地域を選択してください。',
     eEmail: '有効なメールアドレスを入力してください。',
-    eEmail2: 'メールアドレスが一致しません。',
     eAgree: 'プライバシーポリシーに同意してください。',
     thanksTitle: '登録完了',
     thanksBody: 'MYKITAフレームの登録ありがとうございます。\n保証登録が完了しました。\n\nご不明な点は店頭スタッフまでお気軽にお申し付けください。',
@@ -690,9 +701,13 @@ const i18n = {
     lblName: '姓名',
     lblCountry: '国家 / 地区',
     lblEmail: '电子邮件',
-    lblEmail2: '确认电子邮件',
+    lblWarrantyInfo: '保修须知',
+    warrantyInfoBody: '在MYKITA OSAKA购买的MYKITA镜架自购买之日起享有2年制造商保修，保修范围涵盖材料及工艺方面的制造缺陷。因意外、误用或正常磨损造成的损坏不在保修范围内。如需保修服务，可能需要出示购买凭证，请妥善保管。',
     lblPref: '邮件设定与同意事项',
-    lblOptin: '我愿意通过电子邮件接收MYKITA OSAKA的新品资讯、独家优惠及活动信息。',
+    lblOptinQ: '您是否愿意通过电子邮件接收MYKITA OSAKA的新品资讯、独家优惠及活动信息？',
+    optinYes: '是',
+    optinNo: '否',
+    eOptin: '请选择「是」或「否」。',
     privTitle: '隐私数据政策',
     privBody: '您的个人信息（姓名、国家、电子邮件）仅用于镜架保修登记及（如已同意）发送推广邮件。所有信息将安全保存，除提供保修服务所必需外，不会共享给第三方。如需删除或更正您的数据，请随时到店联系我们。提交表格即表示您已阅读并理解本政策。',
     lblAgree: '我已阅读并同意隐私数据政策。',
@@ -701,7 +716,6 @@ const i18n = {
     eName: '请输入姓名。',
     eCountry: '请选择国家。',
     eEmail: '请输入有效的电子邮件地址。',
-    eEmail2: '两次输入的电子邮件不一致。',
     eAgree: '请同意隐私数据政策。',
     thanksTitle: '登记完成',
     thanksBody: '感谢您登记MYKITA镜架保修。\n登记已成功保存。\n\n如有任何疑问，欢迎到店咨询。',
@@ -714,9 +728,13 @@ const i18n = {
     lblName: '이름',
     lblCountry: '국가 / 지역',
     lblEmail: '이메일 주소',
-    lblEmail2: '이메일 주소 확인',
+    lblWarrantyInfo: '보증 안내',
+    warrantyInfoBody: 'MYKITA OSAKA에서 구매하신 MYKITA 프레임은 구매일로부터 2년간 제조사 보증이 적용되며, 소재 및 제조상의 결함을 보장합니다. 사고, 오용 또는 일반적인 마모로 인한 손상은 보증 대상에서 제외됩니다. 보증 서비스 이용 시 구매 증빙이 필요할 수 있으니 잘 보관해 주시기 바랍니다.',
     lblPref: '수신 설정 및 동의 사항',
-    lblOptin: 'MYKITA OSAKA의 매장 정보 및 특별 혜택을 이메일로 받는 것에 동의합니다.',
+    lblOptinQ: 'MYKITA OSAKA의 매장 정보 및 특별 혜택을 이메일로 받으시겠습니까?',
+    optinYes: '예',
+    optinNo: '아니오',
+    eOptin: '예 또는 아니오를 선택해 주세요.',
     privTitle: '개인정보 처리방침',
     privBody: '고객님의 개인정보(이름, 국가, 이메일 주소)는 프레임 보증 등록 및 (동의하신 경우) 홍보 메일 발송 목적으로만 MYKITA OSAKA가 수집합니다. 수집된 정보는 안전하게 보관되며, 보증 서비스 제공에 필요한 경우를 제외하고 제3자에게 제공되지 않습니다. 정보의 삭제 또는 수정은 매장에서 언제든지 요청하실 수 있습니다. 양식을 제출하시면 본 방침을 읽고 이해하신 것으로 간주됩니다.',
     lblAgree: '개인정보 처리방침을 읽었으며 이에 동의합니다.',
@@ -725,7 +743,6 @@ const i18n = {
     eName: '이름을 입력해 주세요.',
     eCountry: '국가를 선택해 주세요.',
     eEmail: '유효한 이메일 주소를 입력해 주세요.',
-    eEmail2: '이메일 주소가 일치하지 않습니다.',
     eAgree: '개인정보 처리방침에 동의해 주세요.',
     thanksTitle: '등록 완료',
     thanksBody: 'MYKITA 프레임을 등록해 주셔서 감사합니다.\n보증 등록이 정상적으로 저장되었습니다.\n\n문의 사항이 있으시면 매장으로 편하게 연락해 주세요.',
@@ -744,13 +761,16 @@ function setLang(lang) {
   });
   document.getElementById('hdr-sub').textContent = t.hdrSub;
   document.getElementById('hdr-title').textContent = t.mainTitle;
+  document.getElementById('lbl-warranty-info').textContent = t.lblWarrantyInfo;
+  document.getElementById('warranty-info-body').textContent = t.warrantyInfoBody;
   document.getElementById('lbl-info').textContent = t.lblInfo;
   setLabelWithReq('lbl-name', t.lblName);
   setLabelWithReq('lbl-country', t.lblCountry);
   setLabelWithReq('lbl-email', t.lblEmail);
-  setLabelWithReq('lbl-email2', t.lblEmail2);
   document.getElementById('lbl-pref').textContent = t.lblPref;
-  document.getElementById('lbl-optin').textContent = t.lblOptin;
+  setLabelWithReq('lbl-optin-q', t.lblOptinQ);
+  document.getElementById('lbl-optin-yes').textContent = t.optinYes;
+  document.getElementById('lbl-optin-no').textContent = t.optinNo;
   document.getElementById('priv-title').textContent = t.privTitle;
   document.getElementById('priv-body').textContent = t.privBody;
   document.getElementById('lbl-agree').innerHTML = t.lblAgree + ' <span class="req">*</span>';
@@ -760,7 +780,7 @@ function setLang(lang) {
   document.getElementById('e-name').textContent = t.eName;
   document.getElementById('e-country').textContent = t.eCountry;
   document.getElementById('e-email').textContent = t.eEmail;
-  document.getElementById('e-email2').textContent = t.eEmail2;
+  document.getElementById('e-optin').textContent = t.eOptin;
   document.getElementById('e-agree').textContent = t.eAgree;
 }
 
@@ -776,10 +796,11 @@ function handleSubmit() {
   const country = document.getElementById('f-country');
   const countryInput = document.getElementById('f-country-input');
   const email = document.getElementById('f-email');
-  const email2 = document.getElementById('f-email2');
+  const optinYes = document.getElementById('f-optin-yes');
+  const optinNo = document.getElementById('f-optin-no');
   const agree = document.getElementById('f-agree');
 
-  [name, countryInput, email, email2].forEach(el => el.classList.remove('err'));
+  [name, countryInput, email].forEach(el => el.classList.remove('err'));
   document.querySelectorAll('.err-msg').forEach(el => el.style.display = 'none');
 
   if (!name.value.trim()) {
@@ -798,9 +819,8 @@ function handleSubmit() {
     show('e-email');
     valid = false;
   }
-  if (!email2.value || email.value !== email2.value) {
-    email2.classList.add('err');
-    show('e-email2');
+  if (!optinYes.checked && !optinNo.checked) {
+    show('e-optin');
     valid = false;
   }
   if (!agree.checked) {
@@ -822,7 +842,7 @@ function handleSubmit() {
     name: name.value.trim(),
     country: country.value,
     email: email.value.trim(),
-    optin: document.getElementById('f-optin').checked,
+    optin: optinYes.checked,
     lang: currentLang
   };
 
