@@ -620,6 +620,19 @@ const STORAGE_KEY = 'mykita_warranty_v1';
 // ── ADMIN PASSWORD (change as needed) ──
 const ADMIN_PASSWORD = '1120';
 
+// ── GOOGLE SHEET SYNC ──
+const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzVWvQI7JG5XxTGCB1JobNTTc9zwHDeNQO05MEj8joTG1n_sc_DN3qMdhzP8H6OKeomeg/exec';
+
+function sendToSheet(record) {
+  if (!SHEET_WEBHOOK_URL) return;
+  fetch(SHEET_WEBHOOK_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(record)
+  }).catch(function() {});
+}
+
 // ── LANGUAGE STRINGS ──
 const i18n = {
   en: {
@@ -811,6 +824,7 @@ function handleSubmit() {
   const data = getRecords();
   data.push(record);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  sendToSheet(record);
 
   document.getElementById('form-area').style.display = 'none';
   const ta = document.getElementById('thanks-area');
