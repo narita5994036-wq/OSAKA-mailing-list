@@ -834,6 +834,15 @@ function getRecords() {
   } catch(e) { return []; }
 }
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function renderAdminTable() {
   const records = getRecords();
   const tbody = document.getElementById('admin-tbody');
@@ -850,12 +859,12 @@ function renderAdminTable() {
   tbody.innerHTML = records.map((r, i) => `
     <tr>
       <td style="color:var(--light); font-size:10px;">${i + 1}</td>
-      <td style="font-size:10px; color:var(--mid);">${r.timestamp}</td>
-      <td>${r.name}</td>
-      <td>${r.country}</td>
-      <td style="color:#185FA5;">${r.email}</td>
+      <td style="font-size:10px; color:var(--mid);">${escapeHtml(r.timestamp)}</td>
+      <td>${escapeHtml(r.name)}</td>
+      <td>${escapeHtml(r.country)}</td>
+      <td style="color:#185FA5;">${escapeHtml(r.email)}</td>
       <td><span class="${r.optin ? 'badge-yes' : 'badge-no'}">${r.optin ? 'Yes' : 'No'}</span></td>
-      <td style="text-transform:uppercase; font-size:10px; color:var(--mid);">${r.lang}</td>
+      <td style="text-transform:uppercase; font-size:10px; color:var(--mid);">${escapeHtml(r.lang)}</td>
     </tr>
   `).join('');
 }
