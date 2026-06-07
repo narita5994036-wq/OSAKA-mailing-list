@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MYKITA OSAKA — Frame Warranty Registration</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #111;
+    --mid: #666;
+    --light: #aaa;
+    --border: #ddd;
+    --bg: #fff;
+    --bg2: #f7f7f7;
+    --red: #b00;
+    --green: #1a6e3c;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--black);
+    min-height: 100vh;
+  }
+
+  /* ── LANG BAR ── */
+  .lang-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0;
+    padding: 12px 32px;
+    border-bottom: 0.5px solid var(--border);
+    background: var(--bg);
+  }
+
+  .lang-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--light);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-right: 0.5px solid var(--border);
+    transition: color 0.15s;
+  }
+  .lang-btn:last-child { border-right: none; }
+  .lang-btn.active, .lang-btn:hover { color: var(--black); }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    padding: 2.5rem 0 2rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--black);
+  }
+
+  .logo-sub {
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    color: var(--mid);
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 2.5rem 24px 4rem;
+  }
+
+  .section-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--mid);
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--border);
+    margin-bottom: 1.75rem;
+  }
+
+  .field { margin-bottom: 1.5rem; }
+
+  .field label {
+    display: block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .req { color: var(--red); margin-left: 2px; }
+
+  .field input[type="text"],
+  .field input[type="email"],
+  .field select {
+    width: 100%;
+    height: 44px;
+    border: 0.5px solid var(--border);
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--black);
+    background: var(--bg);
+    padding: 0 14px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s;
+  }
+
+  .field input:focus,
+  .field select:focus { border-color: var(--black); }
+  .field input.err, .field select.err { border-color: var(--red); }
+
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--mid);
+    pointer-events: none;
+  }
+
+  /* ── COUNTRY AUTOCOMPLETE ── */
+  .ac-wrap { position: relative; }
+  .ac-input {
+    width: 100%;
+    height: 44px;
+    border: 0.5px solid var(--border);
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--black);
+    background: var(--bg);
+    padding: 0 36px 0 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .ac-input:focus { border-color: var(--black); }
+  .ac-input.err { border-color: var(--red); }
+  .ac-chevron {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--mid);
+    transition: transform 0.15s;
+  }
+  .ac-wrap.open .ac-chevron {
+    transform: translateY(-50%) rotate(180deg);
+  }
+  .ac-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0; right: 0;
+    background: var(--bg);
+    border: 0.5px solid var(--black);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 100;
+  }
+  .ac-wrap.open .ac-dropdown { display: block; }
+  .ac-item {
+    padding: 10px 14px;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--black);
+    cursor: pointer;
+    border-bottom: 0.5px solid var(--border);
+    transition: background 0.1s;
+  }
+  .ac-item:last-child { border-bottom: none; }
+  .ac-item:hover, .ac-item.highlighted { background: var(--bg2); }
+  .ac-item mark {
+    background: none;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .ac-empty {
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--light);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.06em;
+  }
+
+  .err-msg {
+    font-size: 9px;
+    color: var(--red);
+    letter-spacing: 0.06em;
+    margin-top: 5px;
+    display: none;
+  }
+
+  /* checkboxes */
+  .check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+  .check-row input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--black);
+    cursor: pointer;
+  }
+  .check-text {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--mid);
+    line-height: 1.7;
+    cursor: pointer;
+  }
+
+  /* privacy box */
+  .privacy-box {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    max-height: 110px;
+    overflow-y: auto;
+    font-size: 10px;
+    color: var(--mid);
+    line-height: 1.85;
+    letter-spacing: 0.03em;
+  }
+  .privacy-box h4 {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .agree-text {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--black);
+    line-height: 1.7;
+    cursor: pointer;
+  }
+
+  /* submit */
+  .submit-btn {
+    width: 100%;
+    height: 48px;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 0.5rem;
+  }
+  .submit-btn:hover { background: #333; }
+
+  /* thanks */
+  .thanks {
+    display: none;
+    text-align: center;
+    padding: 4rem 0;
+  }
+  .thanks-check {
+    width: 48px; height: 48px;
+    border: 1px solid var(--black);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  .thanks-check svg { display: block; }
+  .thanks-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+  .thanks-body {
+    font-size: 11px;
+    color: var(--mid);
+    line-height: 1.9;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ADMIN ── */
+  #admin-gate {
+    max-width: 400px;
+    margin: 5rem auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  #admin-gate .section-label { text-align: left; }
+  #admin-gate .field input { text-align: center; letter-spacing: 0.1em; }
+
+  #admin-panel { display: none; }
+  #admin-panel .main { max-width: 760px; }
+
+  .admin-header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.75rem;
+  }
+
+  .csv-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .csv-btn:hover { background: #333; }
+
+  .clear-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: none;
+    color: var(--red);
+    border: 0.5px solid var(--red);
+    padding: 10px 16px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: background 0.15s;
+  }
+  .clear-btn:hover { background: #fff0f0; }
+
+  .count-badge {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--mid);
+    letter-spacing: 0.08em;
+  }
+
+  /* table */
+  .table-wrap {
+    overflow-x: auto;
+    border: 0.5px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+
+  thead tr {
+    background: var(--black);
+    color: #fff;
+  }
+
+  thead th {
+    padding: 10px 14px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+
+  tbody tr { border-bottom: 0.5px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--bg2); }
+
+  tbody td {
+    padding: 10px 14px;
+    color: var(--black);
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 11px;
+  }
+
+  .badge-yes {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: #e8f5ee;
+    padding: 3px 8px;
+  }
+
+  .badge-no {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light);
+    background: var(--bg2);
+    padding: 3px 8px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--light);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .logout-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: none;
+    color: var(--mid);
+    border: 0.5px solid var(--border);
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .logout-btn:hover { color: var(--black); border-color: var(--black); }
+</style>
+</head>
+<body>
+
+<!-- ── CUSTOMER VIEW ── -->
+<div id="customer-view">
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ja')">日</button>
+    <button class="lang-btn" onclick="setLang('zh')">中</button>
+  </div>
+
+  <div class="header">
+    <div class="logo">MYKITA</div>
+    <div class="logo-sub" id="hdr-sub">Osaka &nbsp;·&nbsp; Frame Warranty Registration</div>
+  </div>
+
+  <div class="main">
+    <div id="form-area">
+      <p class="section-label" id="lbl-info">Customer Information</p>
+
+      <div class="field">
+        <label id="lbl-name">Name <span class="req">*</span></label>
+        <input type="text" id="f-name" placeholder="Your full name">
+        <div class="err-msg" id="e-name">Please enter your name.</div>
+      </div>
+
+      <div class="field">
+        <label id="lbl-country">Country <span class="req">*</span></label>
+        <div class="ac-wrap" id="ac-wrap">
+          <input type="text" class="ac-input" id="f-country-input" autocomplete="off" placeholder="Type or select country...">
+          <div class="ac-chevron"></div>
+          <div class="ac-dropdown" id="ac-dropdown"></div>
+        </div>
+        <input type="hidden" id="f-country">
+        <div class="err-msg" id="e-country">Please select your country.</div>
+      </div>
+
+      <div class="field">
+        <label id="lbl-email">Email Address <span class="req">*</span></label>
+        <input type="email" id="f-email" placeholder="your@email.com">
+        <div class="err-msg" id="e-email">Please enter a valid email address.</div>
+      </div>
+
+      <div class="field">
+        <label id="lbl-email2">Confirm Email Address <span class="req">*</span></label>
+        <input type="email" id="f-email2" placeholder="your@email.com">
+        <div class="err-msg" id="e-email2">Email addresses do not match.</div>
+      </div>
+
+      <p class="section-label" style="margin-top:2.5rem;" id="lbl-pref">Preferences &amp; Agreement</p>
+
+      <div class="check-row">
+        <input type="checkbox" id="f-optin">
+        <label class="check-text" for="f-optin" id="lbl-optin">
+          I would like to receive product updates, exclusive offers, and news from MYKITA OSAKA via email.
+        </label>
+      </div>
+
+      <div class="privacy-box" id="privacy-box">
+        <h4 id="priv-title">Privacy Policy</h4>
+        <span id="priv-body">Your personal data (name, country, email address) is collected by MYKITA OSAKA for the purpose of frame warranty registration and, if consented, for sending promotional communications. Your data will be stored securely and will not be shared with third parties except as required to fulfill the warranty service. You may request deletion or correction of your data at any time by contacting us in-store. By submitting this form, you acknowledge that you have read and understood this policy.</span>
+      </div>
+
+      <div class="check-row">
+        <input type="checkbox" id="f-agree">
+        <label class="agree-text" for="f-agree" id="lbl-agree">
+          I have read and agree to the Privacy Policy. <span class="req">*</span>
+        </label>
+      </div>
+
+      <div class="err-msg" id="e-agree" style="margin-top:-10px; margin-bottom:12px;"></div>
+
+      <button class="submit-btn" id="lbl-submit" onclick="handleSubmit()">Register Warranty</button>
+    </div>
+
+    <div class="thanks" id="thanks-area">
+      <div class="thanks-check">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <polyline points="4,10 8.5,14.5 16,6" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="thanks-title" id="thanks-title">Registration Complete</div>
+      <div class="thanks-body" id="thanks-body">
+        Thank you for registering your MYKITA frame.<br>
+        Your warranty has been recorded successfully.<br><br>
+        Please visit us in-store if you have any questions.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ADMIN GATE ── -->
+<div id="admin-gate" style="display:none;">
+  <div class="header" style="margin-bottom:0;">
+    <div class="logo">MYKITA</div>
+    <div class="logo-sub">Admin Access</div>
+  </div>
+  <div class="main" style="padding-top:2.5rem;">
+    <p class="section-label">Admin Login</p>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="admin-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkPw()">
+      <div class="err-msg" id="e-pw" style="display:block; visibility:hidden;">Incorrect password.</div>
+    </div>
+    <button class="submit-btn" onclick="checkPw()">Enter</button>
+  </div>
+</div>
+
+<!-- ── ADMIN PANEL ── -->
+<div id="admin-panel">
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ja')">日</button>
+    <button class="lang-btn" onclick="setLang('zh')">中</button>
+    <button class="logout-btn" style="margin-left:auto;" onclick="logout()">Logout</button>
+  </div>
+  <div class="header">
+    <div class="logo">MYKITA</div>
+    <div class="logo-sub">Osaka &nbsp;·&nbsp; Admin — Warranty Registrations</div>
+  </div>
+  <div class="main">
+    <div class="admin-header-row">
+      <div>
+        <p class="section-label" style="border:none; margin:0 0 4px;">Registration List</p>
+        <span class="count-badge" id="admin-count">0 records</span>
+      </div>
+      <div>
+        <button class="csv-btn" onclick="downloadCSV()">&#8595; Download CSV</button>
+        <button class="clear-btn" onclick="clearAll()">Clear All</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Timestamp</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Email</th>
+            <th>Opt-in</th>
+            <th>Lang</th>
+          </tr>
+        </thead>
+        <tbody id="admin-tbody"></tbody>
+      </table>
+      <div class="empty-state" id="empty-state" style="display:none;">No registrations yet.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STORAGE KEY ──
+const STORAGE_KEY = 'mykita_warranty_v1';
+
+// ── ADMIN PASSWORD (change as needed) ──
+const ADMIN_PASSWORD = 'mykita2025';
+
+// ── LANGUAGE STRINGS ──
+const i18n = {
+  en: {
+    hdrSub: 'Osaka · Frame Warranty Registration',
+    lblInfo: 'Customer Information',
+    lblName: 'Name',
+    lblCountry: 'Country',
+    lblEmail: 'Email Address',
+    lblEmail2: 'Confirm Email Address',
+    lblPref: 'Preferences & Agreement',
+    lblOptin: 'I would like to receive product updates, exclusive offers, and news from MYKITA OSAKA via email.',
+    privTitle: 'Privacy Policy',
+    privBody: 'Your personal data (name, country, email address) is collected by MYKITA OSAKA for the purpose of frame warranty registration and, if consented, for sending promotional communications. Your data will be stored securely and will not be shared with third parties except as required to fulfill the warranty service. You may request deletion or correction of your data at any time by contacting us in-store. By submitting this form, you acknowledge that you have read and understood this policy.',
+    lblAgree: 'I have read and agree to the Privacy Policy.',
+    lblSubmit: 'Register Warranty',
+    optPlaceholder: '— Select country —',
+    eName: 'Please enter your name.',
+    eCountry: 'Please select your country.',
+    eEmail: 'Please enter a valid email address.',
+    eEmail2: 'Email addresses do not match.',
+    eAgree: 'You must agree to the Privacy Policy.',
+    thanksTitle: 'Registration Complete',
+    thanksBody: 'Thank you for registering your MYKITA frame.\nYour warranty has been recorded successfully.\n\nPlease visit us in-store if you have any questions.',
+    namePlaceholder: 'Your full name',
+  },
+  ja: {
+    hdrSub: 'Osaka · フレーム保証登録',
+    lblInfo: 'お客様情報',
+    lblName: 'お名前',
+    lblCountry: '国・地域',
+    lblEmail: 'メールアドレス',
+    lblEmail2: 'メールアドレス（確認）',
+    lblPref: 'コミュニケーション設定・同意事項',
+    lblOptin: 'MYKITA OSAKAからの新製品情報や特別オファーをメールで受け取ることに同意します。',
+    privTitle: 'プライバシーポリシー',
+    privBody: 'お客様の個人情報（お名前、国名、メールアドレス）は、フレーム保証登録およびメールマガジン配信（同意いただいた場合）の目的にのみMYKITA OSAKAが取得します。取得した情報は安全に管理され、サービス提供に必要な範囲を除き第三者に提供することはございません。情報の削除・辺正は店頭にていつでもお申し出いただけます。',
+    lblAgree: 'プライバシーポリシーを読み、内容に同意します。',
+    lblSubmit: '登録する',
+    optPlaceholder: '— 国・地域を選択 —',
+    eName: 'お名前を入力してください。',
+    eCountry: '国・地域を選択してください。',
+    eEmail: '有効なメールアドレスを入力してください。',
+    eEmail2: 'メールアドレスが一致しません。',
+    eAgree: 'プライバシーポリシーに同意してください。',
+    thanksTitle: '登録完了',
+    thanksBody: 'MYKITAフレームの登録ありがとうございます。\n保証掃録を博滝しました。\n\nご不明な点は店頭スタッフまでお気軽にお申し付けください。',
+    namePlaceholder: 'お名前',
+  },
+  zh: {
+    hdrSub: 'Osaka · 镜架保修登记',
+    lblInfo: '客户信息',
+    lblName: '姓名',
+    lblCountry: '国家 / 地区',
+    lblEmail: '电子邮件',
+    lblEmail2: '确认电子邮件',
+    lblPref: '邮件设定与同意事项',
+    lblOptin: '我愿意通过电子邮件接收MYKITA OSAKA的新品资讯、独家优惠及活动信息。',
+    privTitle: '隐私数据政策',
+    privBody: '您的个人信息（姓名、国家、电子邮件）仅用于镜架保修登记及（如已同意）发送推广邮件。所有信息将安全保存，除提供保修服务所必需外，不会共享给第三方。如需删除或更正您的数据，请随时背店联系我们。提交表格即表示您已阅读并理解本政策。',
+    lblAgree: '我已阅读并同意隐私数据政策。',
+    lblSubmit: '提交登记',
+    optPlaceholder: '— 请选择国家 / 地区 —',
+    eName: '请输入姓名。',
+    eCountry: '请选择国家。',
+    eEmail: '请输入有效的电子邮件地址。',
+    eEmail2: '两次输入的电子邮件不一致。',
+    eAgree: '请同意隐私数据政策。',
+    thanksTitle: '登记完成',
+    thanksBody: '感谢您登记MYKITA镜架保修。\n登记已成功保存。\n\n如有任何疑问，欢迎到店咨询。',
+    namePlaceholder: '您的姓名',
+  }
+};
+
+let currentLang = 'en';
+let isAdmin = false;
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === (lang === 'en' ? 'EN' : lang === 'ja' ? '日' : '中'));
+  });
+  document.getElementById('hdr-sub').textContent = t.hdrSub;
+  document.getElementById('lbl-info').textContent = t.lblInfo;
+  setLabelWithReq('lbl-name', t.lblName);
+  setLabelWithReq('lbl-country', t.lblCountry);
+  setLabelWithReq('lbl-email', t.lblEmail);
+  setLabelWithReq('lbl-email2', t.lblEmail2);
+  document.getElementById('lbl-pref').textContent = t.lblPref;
+  document.getElementById('lbl-optin').textContent = t.lblOptin;
+  document.getElementById('priv-title').textContent = t.privTitle;
+  document.getElementById('priv-body').textContent = t.privBody;
+  document.getElementById('lbl-agree').innerHTML = t.lblAgree + ' <span class="req">*</span>';
+  document.getElementById('lbl-submit').textContent = t.lblSubmit;
+  document.getElementById('f-country-input').placeholder = t.optPlaceholder;
+  document.getElementById('f-name').placeholder = t.namePlaceholder;
+  document.getElementById('e-name').textContent = t.eName;
+  document.getElementById('e-country').textContent = t.eCountry;
+  document.getElementById('e-email').textContent = t.eEmail;
+  document.getElementById('e-email2').textContent = t.eEmail2;
+  document.getElementById('e-agree').textContent = t.eAgree;
+}
+
+function setLabelWithReq(id, text) {
+  document.getElementById(id).innerHTML = text + ' <span class="req">*</span>';
+}
+
+function handleSubmit() {
+  const t = i18n[currentLang];
+  let valid = true;
+
+  const name = document.getElementById('f-name');
+  const country = document.getElementById('f-country');
+  const countryInput = document.getElementById('f-country-input');
+  const email = document.getElementById('f-email');
+  const email2 = document.getElementById('f-email2');
+  const agree = document.getElementById('f-agree');
+
+  [name, countryInput, email, email2].forEach(el => el.classList.remove('err'));
+  document.querySelectorAll('.err-msg').forEach(el => el.style.display = 'none');
+
+  if (!name.value.trim()) {
+    name.classList.add('err');
+    show('e-name');
+    valid = false;
+  }
+  if (!country.value) {
+    countryInput.classList.add('err');
+    show('e-country');
+    valid = false;
+  }
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRe.test(email.value)) {
+    email.classList.add('err');
+    show('e-email');
+    valid = false;
+  }
+  if (!email2.value || email.value !== email2.value) {
+    email2.classList.add('err');
+    show('e-email2');
+    valid = false;
+  }
+  if (!agree.checked) {
+    show('e-agree');
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  const now = new Date();
+  const ts = now.toLocaleString('ja-JP', {
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    hour12: false
+  });
+
+  const record = {
+    timestamp: ts,
+    name: name.value.trim(),
+    country: country.value,
+    email: email.value.trim(),
+    optin: document.getElementById('f-optin').checked,
+    lang: currentLang
+  };
+
+  const data = getRecords();
+  data.push(record);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+  document.getElementById('form-area').style.display = 'none';
+  const ta = document.getElementById('thanks-area');
+  ta.style.display = 'block';
+  document.getElementById('thanks-title').textContent = t.thanksTitle;
+  document.getElementById('thanks-body').innerHTML = t.thanksBody.replace(/\n/g, '<br>');
+}
+
+function show(id) {
+  document.getElementById(id).style.display = 'block';
+}
+
+// ── ADMIN ──
+function checkAdminMode() {
+  if (window.location.search.includes('mode=admin') || window.location.hash === '#admin') {
+    document.getElementById('customer-view').style.display = 'none';
+    document.getElementById('admin-gate').style.display = 'block';
+  }
+}
+
+function checkPw() {
+  const pw = document.getElementById('admin-pw').value;
+  const errEl = document.getElementById('e-pw');
+  if (pw === ADMIN_PASSWORD) {
+    errEl.style.visibility = 'hidden';
+    document.getElementById('admin-gate').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    renderAdminTable();
+    isAdmin = true;
+  } else {
+    errEl.style.visibility = 'visible';
+    errEl.textContent = 'Incorrect password.';
+    document.getElementById('admin-pw').classList.add('err');
+  }
+}
+
+function logout() {
+  document.getElementById('admin-panel').style.display = 'none';
+  document.getElementById('customer-view').style.display = 'block';
+  isAdmin = false;
+}
+
+function getRecords() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch(e) { return []; }
+}
+
+function renderAdminTable() {
+  const records = getRecords();
+  const tbody = document.getElementById('admin-tbody');
+  const empty = document.getElementById('empty-state');
+  document.getElementById('admin-count').textContent = records.length + ' record' + (records.length !== 1 ? 's' : '');
+
+  if (records.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = records.map((r, i) => `
+    <tr>
+      <td style="color:var(--light); font-size:10px;">${i + 1}</td>
+      <td style="font-size:10px; color:var(--mid);">${r.timestamp}</td>
+      <td>${r.name}</td>
+      <td>${r.country}</td>
+      <td style="color:#185FA5;">${r.email}</td>
+      <td><span class="${r.optin ? 'badge-yes' : 'badge-no'}">${r.optin ? 'Yes' : 'No'}</span></td>
+      <td style="text-transform:uppercase; font-size:10px; color:var(--mid);">${r.lang}</td>
+    </tr>
+  `).join('');
+}
+
+function downloadCSV() {
+  const records = getRecords();
+  if (records.length === 0) { alert('No records to export.'); return; }
+
+  const header = ['No.', 'Timestamp', 'Name', 'Country', 'Email', 'Email Opt-in', 'Language'];
+  const rows = records.map((r, i) => [
+    i + 1,
+    r.timestamp,
+    `"${r.name.replace(/"/g, '""')}"`,
+    r.country,
+    r.email,
+    r.optin ? 'Yes' : 'No',
+    r.lang.toUpperCase()
+  ]);
+
+  const csv = [header, ...rows].map(r => r.join(',')).join('\r\n');
+  const bom = '﻿';
+  const blob = new Blob([bom + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const now = new Date();
+  const dateStr = now.getFullYear() + ('0'+(now.getMonth()+1)).slice(-2) + ('0'+now.getDate()).slice(-2);
+  a.href = url;
+  a.download = `mykita_warranty_${dateStr}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function clearAll() {
+  if (!confirm('Delete all registration records? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  renderAdminTable();
+}
+
+// ── COUNTRY AUTOCOMPLETE ──
+const COUNTRIES = [
+  'Afghanistan','Albania','Algeria','Andorra','Angola','Argentina','Armenia','Australia',
+  'Austria','Azerbaijan','Bahrain','Bangladesh','Belarus','Belgium','Bolivia','Bosnia and Herzegovina',
+  'Brazil','Brunei','Bulgaria','Cambodia','Canada','Chile','China','Colombia','Croatia',
+  'Cyprus','Czech Republic','Denmark','Ecuador','Egypt','Estonia','Ethiopia','Finland',
+  'France','Georgia','Germany','Ghana','Greece','Guatemala','Hong Kong','Hungary',
+  'Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy','Jamaica',
+  'Japan','Jordan','Kazakhstan','Kenya','Kuwait','Latvia','Lebanon','Libya','Lithuania',
+  'Luxembourg','Macau','Malaysia','Malta','Mexico','Morocco','Myanmar','Nepal',
+  'Netherlands','New Zealand','Nigeria','Norway','Oman','Pakistan','Panama','Peru',
+  'Philippines','Poland','Portugal','Qatar','Romania','Russia','Saudi Arabia','Serbia',
+  'Singapore','Slovakia','Slovenia','South Africa','South Korea','Spain','Sri Lanka',
+  'Sweden','Switzerland','Taiwan','Thailand','Tunisia','Turkey','Ukraine',
+  'United Arab Emirates','United Kingdom','United States','Uruguay','Uzbekistan',
+  'Venezuela','Vietnam','Other'
+];
+
+let acHighlight = -1;
+
+function initAutocomplete() {
+  const wrap = document.getElementById('ac-wrap');
+  const input = document.getElementById('f-country-input');
+  const hidden = document.getElementById('f-country');
+  const dropdown = document.getElementById('ac-dropdown');
+
+  function getPlaceholder() {
+    return i18n[currentLang].optPlaceholder || 'Type or select country...';
+  }
+
+  function renderList(query) {
+    const q = query.trim().toLowerCase();
+    const filtered = q
+      ? COUNTRIES.filter(c => c.toLowerCase().includes(q))
+      : COUNTRIES;
+
+    acHighlight = -1;
+
+    if (filtered.length === 0) {
+      dropdown.innerHTML = '<div class="ac-empty">No results</div>';
+      return;
+    }
+
+    dropdown.innerHTML = filtered.map(c => {
+      if (!q) return `<div class="ac-item" data-value="${c}">${c}</div>`;
+      const idx = c.toLowerCase().indexOf(q);
+      const before = c.slice(0, idx);
+      const match = c.slice(idx, idx + q.length);
+      const after = c.slice(idx + q.length);
+      return `<div class="ac-item" data-value="${c}">${before}<mark>${match}</mark>${after}</div>`;
+    }).join('');
+
+    dropdown.querySelectorAll('.ac-item').forEach(item => {
+      item.addEventListener('mousedown', e => {
+        e.preventDefault();
+        selectCountry(item.dataset.value);
+      });
+    });
+  }
+
+  function selectCountry(val) {
+    hidden.value = val;
+    input.value = val;
+    input.classList.remove('err');
+    closeDropdown();
+  }
+
+  function openDropdown() {
+    wrap.classList.add('open');
+    renderList(input.value);
+  }
+
+  function closeDropdown() {
+    wrap.classList.remove('open');
+    acHighlight = -1;
+  }
+
+  input.addEventListener('focus', () => { openDropdown(); });
+  input.addEventListener('input', () => {
+    hidden.value = '';
+    openDropdown();
+  });
+
+  input.addEventListener('keydown', e => {
+    const items = dropdown.querySelectorAll('.ac-item');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      acHighlight = Math.min(acHighlight + 1, items.length - 1);
+      items.forEach((it, i) => it.classList.toggle('highlighted', i === acHighlight));
+      if (items[acHighlight]) items[acHighlight].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      acHighlight = Math.max(acHighlight - 1, 0);
+      items.forEach((it, i) => it.classList.toggle('highlighted', i === acHighlight));
+      if (items[acHighlight]) items[acHighlight].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (acHighlight >= 0 && items[acHighlight]) {
+        selectCountry(items[acHighlight].dataset.value);
+      }
+    } else if (e.key === 'Escape') {
+      closeDropdown();
+      input.blur();
+    }
+  });
+
+  document.addEventListener('click', e => {
+    if (!wrap.contains(e.target)) closeDropdown();
+  });
+}
+
+// ── INIT ──
+initAutocomplete();
+checkAdminMode();
+</script>
+</body>
+</html>
