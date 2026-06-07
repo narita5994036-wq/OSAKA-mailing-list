@@ -936,7 +936,7 @@ function initAutocomplete() {
   function renderList(query) {
     const q = query.trim().toLowerCase();
     const filtered = q
-      ? COUNTRIES.filter(c => c.toLowerCase().includes(q))
+      ? COUNTRIES.filter(c => c.toLowerCase().startsWith(q))
       : COUNTRIES;
 
     acHighlight = -1;
