@@ -175,6 +175,15 @@
   .field select:focus { border-color: var(--black); }
   .field input.err, .field select.err { border-color: var(--red); }
 
+  .field input:-webkit-autofill,
+  .field input:-webkit-autofill:hover,
+  .field input:-webkit-autofill:focus,
+  .field input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--bg) inset;
+    -webkit-text-fill-color: var(--black);
+    transition: background-color 9999s ease-in-out 0s;
+  }
+
   .select-wrap { position: relative; }
   .select-wrap::after {
     content: '';
