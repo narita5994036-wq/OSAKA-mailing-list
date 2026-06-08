@@ -53,6 +53,23 @@
   .scale-label-sm { font-size: 10px; }
   .scale-label-lg { font-size: 16px; }
 
+  .scale-track-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .scale-tick {
+    position: absolute;
+    top: 50%;
+    left: calc(6px + (100% - 12px) * 0.1304);
+    width: 1px;
+    height: 8px;
+    background: var(--light);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
   .scale-slider {
     -webkit-appearance: none;
     appearance: none;
@@ -619,7 +636,10 @@
   <div class="lang-bar">
     <div class="text-scale" role="group" aria-label="Text size">
       <span class="scale-label scale-label-sm" aria-hidden="true">A</span>
-      <input type="range" class="scale-slider" id="scale-slider" min="0.85" max="2" step="0.01" value="1" aria-label="Adjust text size" title="Adjust text size">
+      <span class="scale-track-wrap">
+        <input type="range" class="scale-slider" id="scale-slider" min="0.85" max="2" step="0.01" value="1" aria-label="Adjust text size" title="Adjust text size">
+        <span class="scale-tick" aria-hidden="true"></span>
+      </span>
       <span class="scale-label scale-label-lg" aria-hidden="true">A</span>
     </div>
     <div>
