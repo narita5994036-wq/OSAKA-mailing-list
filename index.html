@@ -630,6 +630,7 @@
     </div>
   </div>
 
+  <div id="scale-content">
   <div class="header">
     <div class="logo" id="hdr-title">Frame Warranty Registration</div>
     <div class="logo-sub" id="hdr-sub">MYKITA OSAKA</div>
@@ -718,6 +719,7 @@
       </div>
       <button class="submit-btn" id="btn-done" style="margin-top:24px;" onclick="resetForm()">Done</button>
     </div>
+  </div>
   </div>
 </div>
 
@@ -1376,7 +1378,7 @@ let textScale = TEXT_SCALE_DEFAULT;
 
 function applyTextScale(scale) {
   textScale = scale;
-  const cv = document.getElementById('customer-view');
+  const cv = document.getElementById('scale-content');
   if (cv) cv.style.zoom = scale;
   localStorage.setItem(TEXT_SCALE_KEY, String(scale));
 }
