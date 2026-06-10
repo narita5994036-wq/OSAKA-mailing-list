@@ -842,7 +842,7 @@
       </div>
       <div class="admin-controls">
         <button class="refresh-btn" id="refresh-btn" onclick="refreshRecords()">&#8635; Refresh</button>
-        <select class="csv-filter" id="csv-filter">
+        <select class="csv-filter" id="csv-filter" onchange="renderAdminTable()">
           <option value="all">All Opt-ins</option>
           <option value="yes">Yes Only</option>
           <option value="no">No Only</option>
@@ -1291,8 +1291,15 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+function getFilteredRecords() {
+  const filter = document.getElementById('csv-filter').value;
+  if (filter === 'yes') return adminRecords.filter(r => r.optin === 'Yes');
+  if (filter === 'no') return adminRecords.filter(r => r.optin !== 'Yes');
+  return adminRecords;
+}
+
 function renderAdminTable() {
-  const records = adminRecords;
+  const records = getFilteredRecords();
   const tbody = document.getElementById('admin-tbody');
   const empty = document.getElementById('empty-state');
   document.getElementById('admin-count').textContent = records.length + ' record' + (records.length !== 1 ? 's' : '');
@@ -1334,10 +1341,7 @@ async function deleteRecord(row) {
 }
 
 function downloadCSV() {
-  const filter = document.getElementById('csv-filter').value;
-  let records = adminRecords;
-  if (filter === 'yes') records = records.filter(r => r.optin === 'Yes');
-  else if (filter === 'no') records = records.filter(r => r.optin !== 'Yes');
+  const records = getFilteredRecords();
 
   if (records.length === 0) { alert('No records to export.'); return; }
 
