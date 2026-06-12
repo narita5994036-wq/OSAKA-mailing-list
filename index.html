@@ -1590,6 +1590,7 @@ function suppressRowHover() {
 
 function downloadCSV() {
   const records = getFilteredRecords();
+  const filter = document.getElementById('csv-filter');
 
   if (records.length === 0) { alert('No records to export.'); return; }
 
@@ -1612,7 +1613,7 @@ function downloadCSV() {
   const now = new Date();
   const dateStr = now.getFullYear() + ('0'+(now.getMonth()+1)).slice(-2) + ('0'+now.getDate()).slice(-2);
   a.href = url;
-  const suffix = filter === 'yes' ? '_optin_yes' : filter === 'no' ? '_optin_no' : '';
+  const suffix = filter.value === 'yes' ? '_optin_yes' : filter.value === 'no' ? '_optin_no' : '';
   a.download = `mykita_warranty${suffix}_${dateStr}.csv`;
   a.click();
   URL.revokeObjectURL(url);
