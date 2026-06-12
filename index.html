@@ -535,22 +535,6 @@
     border-radius: 0;
   }
 
-  .clear-btn {
-    font-family: 'Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    background: none;
-    color: var(--red);
-    border: 0.5px solid var(--red);
-    height: 36px;
-    padding: 0 16px;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .clear-btn:hover { background: #fff0f0; }
-
   .refresh-btn {
     font-family: 'Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
     font-size: 9px;
@@ -974,7 +958,6 @@
           <option value="no">No Only</option>
         </select>
         <button class="csv-btn" onclick="downloadCSV()">&#8595; Download CSV</button>
-        <button class="clear-btn" onclick="clearAll()">Clear All</button>
       </div>
     </div>
 
@@ -1607,21 +1590,6 @@ function downloadCSV() {
   a.download = `mykita_warranty${suffix}_${dateStr}.csv`;
   a.click();
   URL.revokeObjectURL(url);
-}
-
-async function clearAll() {
-  if (!confirm('Delete all registration records? This cannot be undone.')) return;
-  try {
-    const json = await adminRequest({ op: 'clear' });
-    if (json.ok) {
-      adminRecords = [];
-      renderAdminTable();
-    } else {
-      alert('Failed to clear records. Please try again.');
-    }
-  } catch (err) {
-    alert('Connection error. Please try again.');
-  }
 }
 
 // ── FOLLOW-UP MAIL COMPOSE ──

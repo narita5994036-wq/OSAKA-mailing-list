@@ -36,13 +36,12 @@ function doPost(e) {
 }
 
 /**
- * Admin API (read-only login, list, delete, clear).
+ * Admin API (read-only login, list, delete).
  * Set ADMIN_PASSWORD in Project Settings > Script Properties (NOT in code).
  *
  * GET params:
  *   action=admin & password=...                → list records
  *   action=admin & password=... & op=delete & row=N → delete row N
- *   action=admin & password=... & op=clear     → delete all data rows
  */
 function doGet(e) {
   var params = e.parameter || {};
@@ -73,14 +72,6 @@ function handleAdminRequest(params) {
       return { ok: false, error: 'invalid row' };
     }
     sheet.deleteRow(row);
-    return { ok: true };
-  }
-
-  if (op === 'clear') {
-    var lastRow = sheet.getLastRow();
-    if (lastRow > 1) {
-      sheet.deleteRows(2, lastRow - 1);
-    }
     return { ok: true };
   }
 
